@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     alignContent: "center",
   },
   container: {
-    backgroundColor: "lightgreen",
+    backgroundColor: "lightblue",
     flex: 1,
     alignItems: "center",
     justifyContent: "center",

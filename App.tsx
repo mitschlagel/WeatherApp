@@ -1,13 +1,14 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 
-import CurrentWeather from "./src/components/CurrentWeather";
-import UpcomingWeather from "./src/components/UpcomingWeather";
+import CurrentWeather from "./src/screens/CurrentWeather";
+import UpcomingWeather from "./src/screens/UpcomingWeather";
+import City from "./src/screens/City";
 
 const App: React.FC = () => {
   return (
     <View style={styles.container}>
-      <UpcomingWeather />
+     <City />
     </View>
   );
 };
@@ -19,3 +20,5 @@ const styles = StyleSheet.create({
 });
 
 export default App;
+
+// 2:00:46 11/17/2023

@@ -1,7 +1,14 @@
 import React from 'react';
-import { View, SafeAreaView, Text, FlatList, StyleSheet, StatusBar, ImageBackground } from 'react-native';
+import { 
+  SafeAreaView, 
+  Text, 
+  FlatList, 
+  StyleSheet, 
+  StatusBar, 
+  ImageBackground 
+} from 'react-native';
 
-import { Feather as Icon } from '@expo/vector-icons';
+import ListItem from '../components/ListItem';
 
 interface WeatherData {
   dt_txt: string;
@@ -12,6 +19,7 @@ interface WeatherData {
   weather: { main: string }[];
   
 }
+
 const DATA = [
   {
     dt_txt: '2023-02-18 12:00:00',
@@ -52,40 +60,24 @@ const DATA = [
 
 ]
 
-export type Props = {
-  dt_txt: string;
-  min: number;
-  max: number;
-  condition: string;
-};
-
-const Item: React.FC<Props> = ({ dt_txt, min, max, condition }) => {
-  return (
-    <View style={styles.item}>
-      <Icon name={'sun'} size={50} color={"black"} />
-      <Text style={styles.date}>{dt_txt}</Text>
-      <Text style={styles.temp}>{min}</Text>
-      <Text style={styles.temp}>{max}</Text>
-    </View>
-  )
-}
-
 const UpcomingWeather: React.FC = () => {
   
   const renderItem = ({ item }: {item: WeatherData}) => (
-    <Item
+    <ListItem
       condition={item.weather[0].main}
       dt_txt={item.dt_txt}
       min={item.main.temp_min}
       max={item.main.temp_max}
     />
   )
+  
+  const { container, image } = styles
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={container}>
       <ImageBackground 
         source={require('../../assets/upcoming-background.jpg')} 
-        style={styles.image} 
+        style={image} 
       >
       <Text>Upcoming Weather</Text>
       <FlatList 
@@ -103,24 +95,6 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: StatusBar.currentHeight || 0,
     backgroundColor: 'lightblue'
-  },
-  item: {
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    borderWidth: 5,
-    backgroundColor: 'lightblue'
-  },
-  temp: {
-    color: 'black',
-    fontSize: 20
-  },
-  date: {
-    color: 'black',
-    fontSize: 15
   },
   image: {
     flex: 1,
