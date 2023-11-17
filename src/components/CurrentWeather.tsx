@@ -1,7 +1,7 @@
-import React from 'react';
-import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
+import React from "react";
+import { View, Text, SafeAreaView, StyleSheet } from "react-native";
 
-import { Feather as Icon } from '@expo/vector-icons';
+import { Feather as Icon } from "@expo/vector-icons";
 
 const CurrentWeather: React.FC = () => {
   return (
@@ -21,37 +21,38 @@ const CurrentWeather: React.FC = () => {
       </View>
     </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    alignContent: 'center',
+    alignContent: "center",
   },
   container: {
-    backgroundColor: 'lightgreen',
+    backgroundColor: "lightgreen",
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   temp: {
-    color: 'black',
-    fontSize: 48
+    color: "black",
+    fontSize: 48,
   },
   feels: {
-    color: 'black',
-    fontSize: 30
+    color: "black",
+    fontSize: 30,
   },
   highLow: {
-    color: 'black',
-    fontSize: 20
+    color: "black",
+    fontSize: 20,
   },
   highLowWrapper: {
-    flexDirection: 'row',
+    flexDirection: "row",
+    justifyContent: "space-between"
   },
   bodyWrapper: {
-    justifyContent: 'flex-end',
-    alignItems: 'flex-start',
+    
+    alignItems: "center",
     paddingLeft: 25,
     marginBottom: 40,
   },
@@ -60,7 +61,7 @@ const styles = StyleSheet.create({
   },
   message: {
     fontSize: 30,
-  }
+  },
 });
 
 export default CurrentWeather;

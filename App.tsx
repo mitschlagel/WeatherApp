@@ -1,15 +1,16 @@
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import React from "react";
+import { View, StyleSheet } from "react-native";
 
-import CurrentWeather from './src/components/CurrentWeather'; 
+import CurrentWeather from "./src/components/CurrentWeather";
+import UpcomingWeather from "./src/components/UpcomingWeather";
 
 const App: React.FC = () => {
   return (
     <View style={styles.container}>
-      <CurrentWeather />
+      <UpcomingWeather />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
