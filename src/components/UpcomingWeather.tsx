@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, SafeAreaView, Text, FlatList, StyleSheet, StatusBar } from 'react-native';
+import { View, SafeAreaView, Text, FlatList, StyleSheet, StatusBar, ImageBackground } from 'react-native';
 
 import { Feather as Icon } from '@expo/vector-icons';
 
@@ -62,7 +62,7 @@ export type Props = {
 const Item: React.FC<Props> = ({ dt_txt, min, max, condition }) => {
   return (
     <View style={styles.item}>
-      <Icon name={'sun'} size={50} color={"white"} />
+      <Icon name={'sun'} size={50} color={"black"} />
       <Text style={styles.date}>{dt_txt}</Text>
       <Text style={styles.temp}>{min}</Text>
       <Text style={styles.temp}>{max}</Text>
@@ -83,12 +83,17 @@ const UpcomingWeather: React.FC = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <ImageBackground 
+        source={require('../../assets/upcoming-background.jpg')} 
+        style={styles.image} 
+      >
       <Text>Upcoming Weather</Text>
       <FlatList 
         data={DATA} 
         renderItem={renderItem} 
         keyExtractor={(item) => item.dt_txt}
       />
+      </ImageBackground>
     </SafeAreaView>
   )
 }
@@ -97,7 +102,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: StatusBar.currentHeight || 0,
-    backgroundColor: 'darkgreen'
+    backgroundColor: 'lightblue'
   },
   item: {
     padding: 20,
@@ -107,15 +112,18 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     borderWidth: 5,
-    backgroundColor: 'lightgreen'
+    backgroundColor: 'lightblue'
   },
   temp: {
-    color: 'white',
+    color: 'black',
     fontSize: 20
   },
   date: {
-    color: 'white',
+    color: 'black',
     fontSize: 15
+  },
+  image: {
+    flex: 1,
   }
 
 })
