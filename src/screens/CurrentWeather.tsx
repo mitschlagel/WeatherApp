@@ -48,10 +48,9 @@ const styles = StyleSheet.create({
   },
   highLowWrapper: {
     flexDirection: "row",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
   },
   bodyWrapper: {
-    
     alignItems: "center",
     paddingLeft: 25,
     marginBottom: 40,
