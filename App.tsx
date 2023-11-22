@@ -4,10 +4,12 @@ import { NavigationContainer } from "@react-navigation/native"
 
 import Tabs from "./src/components/Tabs";
 
+import Counter from "./src/demonstration/counter";
+
 const App: React.FC = () => {
   return (
     <NavigationContainer>
-      <Tabs />
+      <Counter />
     </NavigationContainer>
     
   );
