@@ -7,7 +7,6 @@ import RowText from "../components/RowText";
 import { weatherType } from "../utilities/weatherType";
 
 const CurrentWeather: React.FC = () => {
-
   const {
     wrapper,
     container,
@@ -17,8 +16,8 @@ const CurrentWeather: React.FC = () => {
     highLow,
     bodyWrapper,
     description,
-    message
-  } = styles
+    message,
+  } = styles;
 
   return (
     <SafeAreaView style={wrapper}>
@@ -26,16 +25,16 @@ const CurrentWeather: React.FC = () => {
         <Icon name="sun" size={100} color="black" />
         <Text style={temp}>6</Text>
         <Text style={feels}>Feels like 5</Text>
-        <RowText 
-          messageOne={'High: 8'} 
-          messageTwo={'Low: 6'} 
+        <RowText
+          messageOne={"High: 8"}
+          messageTwo={"Low: 6"}
           containerStyles={highLowWrapper}
           messageOneStyles={highLow}
           messageTwoStyles={highLow}
         />
-         <RowText 
-          messageOne={"It's sunny"} 
-          messageTwo={weatherType.Clear.message} 
+        <RowText
+          messageOne={"It's sunny"}
+          messageTwo={weatherType.Clear.message}
           containerStyles={bodyWrapper}
           messageOneStyles={description}
           messageTwoStyles={message}
@@ -48,13 +47,13 @@ const CurrentWeather: React.FC = () => {
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    alignContent: "center"
+    alignContent: "center",
   },
   container: {
     backgroundColor: "lightblue",
     flex: 1,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   temp: {
     color: "black",
@@ -70,7 +69,7 @@ const styles = StyleSheet.create({
   },
   highLowWrapper: {
     flexDirection: "row",
-    padding: 20
+    padding: 20,
   },
   bodyWrapper: {
     alignItems: "center",
