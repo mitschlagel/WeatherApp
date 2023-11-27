@@ -6,7 +6,11 @@ import RowText from "../components/RowText";
 
 import { weatherType } from "../utilities/weatherType";
 
-const CurrentWeather: React.FC = () => {
+interface CurrentWeatherProps {
+  weatherData: WeatherData
+}
+
+const CurrentWeather: React.FC<CurrentWeatherProps> = ({weatherData}) => {
   const {
     wrapper,
     container,
@@ -23,17 +27,17 @@ const CurrentWeather: React.FC = () => {
     <SafeAreaView style={wrapper}>
       <View style={container}>
         <Icon name="sun" size={100} color="black" />
-        <Text style={temp}>6</Text>
-        <Text style={feels}>Feels like 5</Text>
+        <Text style={temp}>{weatherData.main.temp}</Text>
+        <Text style={feels}>{weatherData.main.feels_like}</Text>
         <RowText
-          messageOne={"High: 8"}
-          messageTwo={"Low: 6"}
+          messageOne={`High: ${weatherData.main.temp_max}`}
+          messageTwo={`Low: ${weatherData.main.temp_min}`}
           containerStyles={highLowWrapper}
           messageOneStyles={highLow}
           messageTwoStyles={highLow}
         />
         <RowText
-          messageOne={"It's sunny"}
+          messageOne={weatherData.weather[0].description}
           messageTwo={weatherType.Clear.message}
           containerStyles={bodyWrapper}
           messageOneStyles={description}
