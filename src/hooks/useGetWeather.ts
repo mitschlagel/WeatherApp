@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import * as Location from "expo-location";
 import { WEATHER_API_KEY } from "@env"
 
+import WeatherForecast from "../@types/weatherForecast";
+
 
 export const useGetWeather  = (): [boolean, string | null, WeatherForecast | null] => {
 

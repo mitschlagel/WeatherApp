@@ -1,4 +1,12 @@
-export const weatherType = {
+export interface WeatherType {
+  [key: string]: {
+    icon: string;
+    message: string;
+    backgroundColor: string;
+  };
+}
+
+export const weatherType: WeatherType = {
   Thunderstorm: {
     icon: "zap",
     message: "It could get noisy",
@@ -39,4 +47,4 @@ export const weatherType = {
     message: "It might be hard to see",
     backgroundColor: "#3e3e37",
   },
-};
+} as const

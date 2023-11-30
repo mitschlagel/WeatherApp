@@ -5,6 +5,7 @@ import { Feather as Icon } from "@expo/vector-icons";
 import RowText from "../components/RowText";
 
 import { weatherType } from "../utilities/weatherType";
+import WeatherData from "../@types/weatherData";
 
 interface CurrentWeatherProps {
   weatherData: WeatherData
@@ -14,7 +15,7 @@ const CurrentWeather: React.FC<CurrentWeatherProps> = ({weatherData}) => {
   const {
     wrapper,
     container,
-    temp,
+    tempStyles,
     feels,
     highLowWrapper,
     highLow,
@@ -23,22 +24,30 @@ const CurrentWeather: React.FC<CurrentWeatherProps> = ({weatherData}) => {
     message,
   } = styles;
 
+  const { 
+    main: { 
+      temp, feels_like, temp_max, temp_min }, 
+      weather
+    } = weatherData
+
+    const weatherCondition = weatherType[weather[0].main] as { backgroundColor: string; message: string; icon: keyof typeof Icon.glyphMap}
+
   return (
-    <SafeAreaView style={wrapper}>
+    <SafeAreaView style={[wrapper, { backgroundColor: weatherCondition.backgroundColor }]}>
       <View style={container}>
-        <Icon name="sun" size={100} color="black" />
-        <Text style={temp}>{weatherData.main.temp}</Text>
-        <Text style={feels}>{weatherData.main.feels_like}</Text>
+        <Icon name={weatherCondition.icon} size={100} color="white" />
+        <Text style={tempStyles}>{temp}</Text>
+        <Text style={feels}>`Feels like ${feels_like}`</Text>
         <RowText
-          messageOne={`High: ${weatherData.main.temp_max}`}
-          messageTwo={`Low: ${weatherData.main.temp_min}`}
+          messageOne={`High: ${temp_max}`}
+          messageTwo={`Low: ${temp_min}`}
           containerStyles={highLowWrapper}
           messageOneStyles={highLow}
           messageTwoStyles={highLow}
         />
         <RowText
-          messageOne={weatherData.weather[0].description}
-          messageTwo={weatherType.Clear.message}
+          messageOne={weather[0].description}
+          messageTwo={weatherCondition.message}
           containerStyles={bodyWrapper}
           messageOneStyles={description}
           messageTwoStyles={message}
@@ -59,7 +68,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  temp: {
+  tempStyles: {
     color: "black",
     fontSize: 48,
   },
