@@ -10,7 +10,13 @@ import {
 
 import IconText from "../components/IconText";
 
-const City = () => {
+import useGetLocation from "../hooks/useGetLocation";
+
+interface CityProps {
+  location: Location
+}
+
+const City: React.FC<CityProps> = ({ location }) => {
   const {
     container,
     cityName,
@@ -22,6 +28,7 @@ const City = () => {
     riseSetText,
   } = styles;
 
+
   return (
     <SafeAreaView style={container}>
       <ImageBackground
@@ -29,8 +36,8 @@ const City = () => {
         style={styles.imageLayout}
         imageStyle={{ resizeMode: "cover", alignSelf: "baseline" }}
       >
-        <Text style={[cityName, cityText]}>Omaha, NE</Text>
-        <Text style={[countryName, cityText]}>USA</Text>
+        <Text style={[cityName, cityText]}>{`${location.name} ${location.state}`}</Text>
+        <Text style={[countryName, cityText]}>{location.country}</Text>
         <View style={[populationWrapper, styles.rowLayout]}>
           <IconText
             iconName={"user"}

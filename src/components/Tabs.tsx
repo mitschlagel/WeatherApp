@@ -8,14 +8,17 @@ import CurrentWeather from "../screens/CurrentWeather";
 import UpcomingWeather from "../screens/UpcomingWeather";
 import City from "../screens/City";
 
+import WeatherForecast from "../@types/WeatherForecast";
+
 const Tab = createBottomTabNavigator();
 
 
 interface TabProps {
   weather: WeatherForecast | null
+  location: Location | null
 }
 
-const Tabs: React.FC<TabProps> = ({weather}) => {
+const Tabs: React.FC<TabProps> = ({weather, location}) => {
   return (
     <Tab.Navigator
       screenOptions={{
@@ -63,7 +66,6 @@ const Tabs: React.FC<TabProps> = ({weather}) => {
       />
       <Tab.Screen
         name={"Location"}
-        component={City}
         options={{
           tabBarIcon: ({ focused }) => (
             <Icon
@@ -73,7 +75,9 @@ const Tabs: React.FC<TabProps> = ({weather}) => {
             />
           ),
         }}
-      />
+      >
+        {() => location ? <City location={location} /> : null}
+      </Tab.Screen>
     </Tab.Navigator>
   );
 };

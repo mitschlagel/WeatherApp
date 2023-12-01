@@ -6,16 +6,17 @@ import { NavigationContainer } from "@react-navigation/native";
 import Tabs from "./src/components/Tabs";
 
 import { useGetWeather } from "./src/hooks/useGetWeather";
+import useGetLocation from "./src/hooks/useGetLocation";
 
 const App: React.FC = () => {
   
   const [loading, error, weather] = useGetWeather()
-  console.log(JSON.stringify(weather, null, 2 ))
-
-  if (weather) {
+  const [l, e, location] = useGetLocation()
+  console.log(location)
+  if (weather && location) {
     return (
       <NavigationContainer>
-        <Tabs weather={weather}/>
+        <Tabs weather={weather} location={location[0]}/>
       </NavigationContainer>
     );
   }

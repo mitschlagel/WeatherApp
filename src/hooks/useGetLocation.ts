@@ -3,23 +3,18 @@ import React, { useState, useEffect } from "react";
 import * as Location from "expo-location";
 import { WEATHER_API_KEY } from "@env"
 
-import WeatherForecast from "../@types/WeatherForecast";
-
-
-export const useGetWeather  = (): [boolean, string | null, WeatherForecast | null] => {
-
+const useGetLocation = (): [loading: boolean, error: string | null, currentLocation: LocationResponse | null] => { 
     const [loading, setLoading] = useState<boolean>(true);
-    const [location, setLocation] = useState<Location.LocationObject | null>(null);
+    const [location, setLocation] = useState<LocationResponse | null>(null);
     const [error, setError] = useState<string | null>(null);
-    const [weather, setWeather] = useState<WeatherForecast | null>(null)
     const [lat, setLat] = useState<number | null>(null)
     const [long, setLong] = useState<number | null>(null)
 
-    const fetchWeatherData = async () => {
+    const fetchLocation = async () => {
         try {
-          const response = await fetch(`http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${WEATHER_API_KEY}&units=imperial`)
+          const response = await fetch(`http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${long}&appid=${WEATHER_API_KEY}`)
           const data = await response.json()
-          setWeather(data)
+          setLocation(data)
           setLoading(false)
         } catch (error: any) {
           setError(error.message)
@@ -39,9 +34,12 @@ export const useGetWeather  = (): [boolean, string | null, WeatherForecast | nul
           let location = await Location.getCurrentPositionAsync({});
           setLat(location.coords.latitude)
           setLong(location.coords.longitude)
-          await fetchWeatherData()
+          await fetchLocation()
         })();
       }, [lat, long]);
 
-    return [loading, error, weather]
+    return [loading, error, location]
+
 }
+
+export default useGetLocation;
