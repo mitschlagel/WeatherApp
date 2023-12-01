@@ -5,7 +5,7 @@ import { Feather as Icon } from "@expo/vector-icons";
 import RowText from "../components/RowText";
 
 import { weatherType } from "../utilities/weatherType";
-import WeatherData from "../@types/weatherData";
+import WeatherData from "../@types/WeatherData";
 
 interface CurrentWeatherProps {
   weatherData: WeatherData

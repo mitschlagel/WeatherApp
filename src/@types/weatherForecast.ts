@@ -1,4 +1,4 @@
-import WeatherData from "./weatherData";
+import WeatherData from "./WeatherData";
 
 export default interface WeatherForecast {
     cod: string;
